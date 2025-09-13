@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employee Management Home</title>
+    <style>
+        body { font-family: Arial; text-align: center; margin-top: 50px; }
+        input, button { padding: 10px; margin: 10px; font-size: 16px; border-radius: 5px; }
+        button { cursor: pointer; border: none; background-color: #007BFF; color: white; }
+        button:hover { background-color: #0056b3; }
+    </style>
+</head>
+<body>
+    <h1>Employee Management</h1>
+    <!-- List Employees -->
+    <button onclick="window.location.href='/employees/'">List Employees</button>
+    <br>
+    <!-- Create Employee -->
+    <button onclick="window.location.href='/employees/create/'">Create Employee</button>
+    <br>
+    <!-- Employee Detail / Update / Delete -->
+    <input type="text" id="employeeId" placeholder="Enter Employee ID">
+    <button onclick="goToEmployee()">Go to Employee</button>
+    <br>
+    <!-- Average Salary by Department -->
+    <button onclick="window.location.href='/employees/avg-salary'">Average Salary by Department</button>
+    <br>
+    <!-- Search Employees by Skill -->
+    <input type="text" id="skill" placeholder="Enter Skill">
+    <button onclick="searchBySkill()">Search Employees by Skill</button>
+    <br>
+    <!-- List Employees by Department -->
+    <input type="text" id="department" placeholder="Enter Department">
+    <button onclick="listByDepartment()">List Employees by Department</button>
+    <script>
+        function goToEmployee() {
+            const id = document.getElementById('employeeId').value.trim();
+            if(id) {
+                window.location.href = `/employees/${id}/`;
+            } else {
+                alert('Please enter an Employee ID');
+            }
+        }
+        function searchBySkill() {
+            const skill = document.getElementById('skill').value.trim();
+            if(skill) {
+                window.location.href = `/employees/search?skill=${encodeURIComponent(skill)}`;
+            } else {
+                alert('Please enter a Skill');
+            }
+        }
+        function listByDepartment() {
+            const department = document.getElementById('department').value.trim();
+            if(department) {
+                window.location.href = `/employees/department?department=${encodeURIComponent(department)}`;
+            } else {
+                alert('Please enter a Department');
+            }
+        }
+    </script>
+</body>
+</html>
